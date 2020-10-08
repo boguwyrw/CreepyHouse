@@ -12,6 +12,13 @@ public class CharactersScript : MonoBehaviour
     private Toggle cleverGuyToggle;
     [SerializeField]
     private Toggle strongGuyToggle;
+    [SerializeField]
+    private GameObject cleverGuyGO;
+    [SerializeField]
+    private GameObject strongGuyGO;
+
+    public static bool cleverGuy = false;
+    public static bool strongGuy = false;
 
     private void Start()
     {
@@ -19,6 +26,12 @@ public class CharactersScript : MonoBehaviour
     }
 
     private void Update()
+    {
+        ActivationStartGameButton();
+        CharacterChoice();
+    }
+
+    private void ActivationStartGameButton()
     {
         if (cleverGuyToggle.isOn == false && strongGuyToggle.isOn == false)
         {
@@ -29,7 +42,19 @@ public class CharactersScript : MonoBehaviour
             startGameButton.interactable = true;
         }
     }
-
+    
+    private void CharacterChoice()
+    {
+        if (cleverGuyToggle.isOn == true)
+        {
+            cleverGuy = true;
+        }
+        else if (strongGuyToggle.isOn == true)
+        {
+            strongGuy = true;
+        }
+    }
+    
     public void StartGameButton()
     {
         SceneManager.LoadScene("GameScene");

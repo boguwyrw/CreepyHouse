@@ -354,6 +354,7 @@ MonoBehaviour:
   dexterityValueText: {fileID: 81073464}
   staminaValueText: {fileID: 2086319742}
   artificeValueText: {fileID: 424889793}
+  guyToggle: {fileID: 1446702837}
 --- !u!1 &130524107
 GameObject:
   m_ObjectHideFlags: 0
@@ -1172,6 +1173,8 @@ MonoBehaviour:
   startGameButton: {fileID: 2041817145}
   cleverGuyToggle: {fileID: 1446702837}
   strongGuyToggle: {fileID: 1766919710}
+  cleverGuyGO: {fileID: 87577536}
+  strongGuyGO: {fileID: 1195616729}
 --- !u!1 &560210112
 GameObject:
   m_ObjectHideFlags: 0
@@ -1606,6 +1609,7 @@ MonoBehaviour:
   dexterityValueText: {fileID: 399177135}
   staminaValueText: {fileID: 40239432}
   artificeValueText: {fileID: 560210114}
+  guyToggle: {fileID: 1766919710}
 --- !u!114 &1195616732
 MonoBehaviour:
   m_ObjectHideFlags: 0
