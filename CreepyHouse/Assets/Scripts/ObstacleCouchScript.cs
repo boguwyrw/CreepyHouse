@@ -25,6 +25,7 @@ public class ObstacleCouchScript : MonoBehaviour
         {
             jumpButton.gameObject.SetActive(false);
             moveButton.gameObject.SetActive(false);
+            gameObject.GetComponent<BoxCollider>().enabled = false;
         }
     }
 }
