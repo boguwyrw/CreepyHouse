@@ -434,7 +434,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &236991367
 RectTransform:
   m_ObjectHideFlags: 0
@@ -494,7 +494,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 236991369}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1173897925}
+        m_MethodName: MoveButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &236991369
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -756,11 +767,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 467047275}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.8, y: 0, z: 0.25}
+  m_LocalPosition: {x: 0.14999998, y: 0, z: 4.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 824657464}
-  m_RootOrder: 0
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &467047275
 GameObject:
@@ -777,7 +788,7 @@ GameObject:
   - component: {fileID: 467047276}
   - component: {fileID: 467047277}
   m_Layer: 10
-  m_Name: Couch
+  m_Name: ObstacleCouch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -795,7 +806,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3746258753dccc24995cd5fe2bf9959b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstacleCouchSystem: {fileID: 1173897923}
+  jumpButton: {fileID: 1045912871}
+  moveButton: {fileID: 236991368}
 --- !u!65 &467047277
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1299,37 +1311,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 800816426}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &824657463
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 824657464}
-  m_Layer: 10
-  m_Name: ObstacleCouch
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &824657464
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 824657463}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.65, y: 0, z: 4}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 466685771}
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &829070953
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1833,7 +1814,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1045912870
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2019,7 +2000,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1173897924
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2054,6 +2035,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1334293281}
+  obstacleCouch: {fileID: 467047275}
 --- !u!1001 &1226253766
 PrefabInstance:
   m_ObjectHideFlags: 0

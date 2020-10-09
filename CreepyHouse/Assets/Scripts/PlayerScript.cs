@@ -25,6 +25,11 @@ public class PlayerScript : MonoBehaviour
 
     private void Update()
     {
+        PlayerKeyboardControl();
+    }
+
+    private void PlayerKeyboardControl()
+    {
         if (Input.GetKey(KeyCode.W))
         {
             transform.Translate(Vector3.forward * playerSpeed * Time.deltaTime);
