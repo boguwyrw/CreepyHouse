@@ -10,7 +10,7 @@ public class DoorScript : MonoBehaviour
     void Start()
     {
         doorWidth = gameObject.GetComponent<BoxCollider>().size.x;
-        rotationVector = new Vector3(transform.position.x + 1.5f, transform.position.y, transform.position.z);
+        rotationVector = new Vector3(transform.position.x + 1.0f, transform.position.y, transform.position.z);
     }
 
     void Update()
