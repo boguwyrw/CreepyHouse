@@ -7,7 +7,8 @@ public class PlayerGuyScript : MonoBehaviour
     [SerializeField]
     private NewCharacterScript newCharacter;
 
-    private int playerHealth = 0;
+    public static int playerHealth = 0;
+
     private int playerStrength = 0;
     private int playerDexterity = 0;
     private int playerStamina = 0;
@@ -20,5 +21,15 @@ public class PlayerGuyScript : MonoBehaviour
         playerDexterity = newCharacter.dexterity;
         playerStamina = newCharacter.stamina;
         playerArtifice = newCharacter.artifice;
+    }
+
+    public int GetPlayerStrength()
+    {
+        return playerStrength;
+    }
+
+    public int GetPlayerDexterity()
+    {
+        return playerDexterity;
     }
 }
