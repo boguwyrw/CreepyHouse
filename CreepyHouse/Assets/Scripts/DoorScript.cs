@@ -11,13 +11,16 @@ public class DoorScript : MonoBehaviour
     {
         doorWidth = gameObject.GetComponent<BoxCollider>().size.x;
         rotationVector = new Vector3(transform.position.x + 1.0f, transform.position.y, transform.position.z);
+        transform.RotateAround(rotationVector, Vector3.up, 15.0f);
     }
 
     void Update()
     {
+        /*
         if (transform.localEulerAngles.y < 90.0f)
         {
             transform.RotateAround(rotationVector, Vector3.up, 20 * Time.deltaTime);
         }
+        */
     }
 }
