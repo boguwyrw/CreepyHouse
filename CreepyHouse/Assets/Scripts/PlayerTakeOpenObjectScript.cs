@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerTakeOpenClosedObjectScript : MonoBehaviour
+public class PlayerTakeOpenObjectScript : MonoBehaviour
 {
     [SerializeField]
     private Camera playerCamera;
@@ -19,7 +19,7 @@ public class PlayerTakeOpenClosedObjectScript : MonoBehaviour
 
     private string objectName = "";
     private bool canOpenClosed = false;
-    private float distanceToObject = 1.75f;
+    private float distanceToObject = 2.25f;
 
     private void Update()
     {
@@ -72,6 +72,8 @@ public class PlayerTakeOpenClosedObjectScript : MonoBehaviour
     public void TakeObject()
     {
         castHit.transform.parent = playerEquipment.transform;
+        castHit.collider.gameObject.SetActive(false);
+        castHit.transform.position = playerEquipment.transform.position;
     }
 
     public void OpenClosedObject()
