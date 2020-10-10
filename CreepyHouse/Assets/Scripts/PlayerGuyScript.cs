@@ -32,4 +32,14 @@ public class PlayerGuyScript : MonoBehaviour
     {
         return playerDexterity;
     }
+
+    public int GetPlayerStamina()
+    {
+        return playerStamina;
+    }
+
+    public int GetPlayerArtifice()
+    {
+        return playerArtifice;
+    }
 }

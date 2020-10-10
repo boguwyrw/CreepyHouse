@@ -15,6 +15,8 @@ public class ObstacleCouchSystemScript : MonoBehaviour
     private Vector3 couchRotationVector;
     private float rotationForce = 20.0f;
     private bool canMoveCouch = false;
+    private int healthDamage = 2;
+    private int minimumRequiredPoints = 8;
 
     private int playerStrength;
     private int playerDexterity;
@@ -38,29 +40,34 @@ public class ObstacleCouchSystemScript : MonoBehaviour
             if (obstacleCouch.transform.localEulerAngles.y <= 270.0f)
             {
                 rotationForce = 0.0f;
-                TurnOFFObstacleCouch();
+                TurnOffObstacleCouch();
             }
         }
+    }
+
+    private void PlayerHealthDamage()
+    {
+        PlayerGuyScript.playerHealth = PlayerGuyScript.playerHealth - healthDamage;
     }
 
     private void PlayerJumpsOverObstacle()
     {
         player.GetComponent<Rigidbody>().AddForce(jumpDirection * jumpForce * Time.deltaTime, ForceMode.Impulse);
-        if (playerDexterity < 8)
+        if (playerDexterity < minimumRequiredPoints)
         {
-            PlayerGuyScript.playerHealth = PlayerGuyScript.playerHealth - 2;
+            PlayerHealthDamage();
         }
     }
 
     private void PlayerMovesObstacle()
     {
-        if (playerStrength < 8)
+        if (playerStrength < minimumRequiredPoints)
         {
-            PlayerGuyScript.playerHealth = PlayerGuyScript.playerHealth - 2;
+            PlayerHealthDamage();
         }
     }
 
-    private void TurnOFFObstacleCouch()
+    private void TurnOffObstacleCouch()
     {
         obstacleCouch.GetComponent<BoxCollider>().enabled = false;
     }
