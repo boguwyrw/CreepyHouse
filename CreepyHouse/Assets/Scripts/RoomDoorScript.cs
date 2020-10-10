@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DoorScript : MonoBehaviour
+public class RoomDoorScript : MonoBehaviour
 {
     [SerializeField]
     private Button actionButton;
+    [SerializeField]
+    private Text actionInfoText;
 
     private float doorWidth = 0.0f;
     private Vector3 rotationVector;
@@ -48,6 +50,10 @@ public class DoorScript : MonoBehaviour
         if (other.gameObject.layer == 9)
         {
             actionButton.gameObject.SetActive(true);
+            if (!doorAreOpen)
+            {
+                actionInfoText.gameObject.SetActive(true);
+            }
         }
     }
 
@@ -56,6 +62,7 @@ public class DoorScript : MonoBehaviour
         if (other.gameObject.layer == 9)
         {
             actionButton.gameObject.SetActive(false);
+            actionInfoText.gameObject.SetActive(false);
         }
     }
     
