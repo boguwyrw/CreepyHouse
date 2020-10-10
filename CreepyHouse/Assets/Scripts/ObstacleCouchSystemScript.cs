@@ -18,8 +18,8 @@ public class ObstacleCouchSystemScript : MonoBehaviour
     private int healthDamage = 2;
     private int minimumRequiredPoints = 8;
 
-    private int playerStrength;
-    private int playerDexterity;
+    private int playerStrength = 0;
+    private int playerDexterity = 0;
 
     private void Start()
     {
