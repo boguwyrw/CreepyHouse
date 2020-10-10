@@ -12,7 +12,7 @@ public class RoomDoorScript : MonoBehaviour
 
     private float doorWidth = 0.0f;
     private Vector3 rotationVector;
-    private float doorOpeningSpeed = 17.5f;
+    private float doorOpeningSpeed = 22.0f;
     private bool madeAction = false;
     private bool doorAreOpen = false;
 
