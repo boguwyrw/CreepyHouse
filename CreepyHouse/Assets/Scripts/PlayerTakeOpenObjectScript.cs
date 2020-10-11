@@ -18,8 +18,8 @@ public class PlayerTakeOpenObjectScript : MonoBehaviour
     private Ray ray;
 
     private string objectName = "";
-    private bool canOpenClosed = false;
-    private float distanceToObject = 2.25f;
+    private bool canOpen = false;
+    private float distanceToObject = 2.5f;
 
     private void Update()
     {
@@ -29,7 +29,7 @@ public class PlayerTakeOpenObjectScript : MonoBehaviour
         {
             PlayerTakeObject();
 
-            PlayerOpenClosedObject();
+            PlayerOpenObject();
         }
     }
 
@@ -45,7 +45,7 @@ public class PlayerTakeOpenObjectScript : MonoBehaviour
         }
     }
 
-    private void PlayerOpenClosedObject()
+    private void PlayerOpenObject()
     {
         if (castHit.collider.gameObject.layer == 12 && castHit.distance <= distanceToObject)
         {
@@ -55,7 +55,7 @@ public class PlayerTakeOpenObjectScript : MonoBehaviour
         else
         {
             openClosedButton.gameObject.SetActive(false);
-            canOpenClosed = false;
+            canOpen = false;
         }
     }
 
@@ -64,9 +64,9 @@ public class PlayerTakeOpenObjectScript : MonoBehaviour
         return objectName;
     }
 
-    public bool GetCanOpenClosed()
+    public bool GetCanOpen()
     {
-        return canOpenClosed;
+        return canOpen;
     }
 
     public void TakeObject()
@@ -78,6 +78,6 @@ public class PlayerTakeOpenObjectScript : MonoBehaviour
 
     public void OpenClosedObject()
     {
-        canOpenClosed = true;
+        canOpen = true;
     }
 }

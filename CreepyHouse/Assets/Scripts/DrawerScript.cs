@@ -7,22 +7,22 @@ public class DrawerScript : MonoBehaviour
     [SerializeField]
     private GameObject player;
 
-    private PlayerTakeOpenObjectScript playerOpenClosed;
+    private PlayerTakeOpenObjectScript playerTakeOpen;
 
     private string objectName = "";
-    private bool canOpenClosed = false;
+    private bool canOpen = false;
 
     private void Start()
     {
-        playerOpenClosed = player.GetComponent<PlayerTakeOpenObjectScript>();
+        playerTakeOpen = player.GetComponent<PlayerTakeOpenObjectScript>();
     }
 
     private void Update()
     {
-        objectName = playerOpenClosed.GetObjectName();
-        canOpenClosed = playerOpenClosed.GetCanOpenClosed();
+        objectName = playerTakeOpen.GetObjectName();
+        canOpen = playerTakeOpen.GetCanOpen();
 
-        if (gameObject.name.Equals(objectName) && canOpenClosed && transform.localPosition.z <= 1.4f)
+        if (gameObject.name.Equals(objectName) && canOpen && transform.localPosition.z <= 1.4f)
         {
             transform.Translate(Vector3.forward * Time.deltaTime);
         }
