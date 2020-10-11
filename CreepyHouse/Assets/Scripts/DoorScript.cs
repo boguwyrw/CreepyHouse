@@ -16,7 +16,7 @@ public class DoorScript : MonoBehaviour
 
     private float doorWidth = 0.0f;
     private Vector3 rotationVector;
-    private float doorOpeningSpeed = 65.0f;
+    private float doorOpeningSpeed = 100.0f;
     private DoorsScript doorsScript;
     private bool openingDoor = false;
 
@@ -49,8 +49,15 @@ public class DoorScript : MonoBehaviour
         if (transform.localEulerAngles.y >= 90)
         {
             doorOpeningSpeed = 0.0f;
+            TurnOffButtons();
             gameObject.GetComponent<BoxCollider>().enabled = false;
         }
+    }
+
+    private void TurnOffButtons()
+    {
+        wreckingBarButton.gameObject.SetActive(false);
+        skeletonKeyButton.gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -67,8 +74,7 @@ public class DoorScript : MonoBehaviour
     {
         if (other.gameObject.layer == 9)
         {
-            wreckingBarButton.gameObject.SetActive(false);
-            skeletonKeyButton.gameObject.SetActive(false);
+            TurnOffButtons();
         }
     }
 

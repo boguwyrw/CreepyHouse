@@ -8456,7 +8456,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 0.6
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -9800,7 +9800,7 @@ PrefabInstance:
     - target: {fileID: 936510100312651522, guid: a291d177e1281f745b8570c6675dd66f,
         type: 3}
       propertyPath: m_Size.z
-      value: 10
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 936510100312651522, guid: a291d177e1281f745b8570c6675dd66f,
         type: 3}

@@ -15,7 +15,6 @@ public class DoorsScript : MonoBehaviour
     private GameObject player;
 
     private bool canOpenDoor = false;
-    //private float doorOpeningSpeed = 50.0f;
  
     private int healthDamage = 2;
     private int minimumRequiredPoints = 6;
@@ -102,8 +101,8 @@ public class DoorsScript : MonoBehaviour
     private IEnumerator DeactivateDoorInfoText()
     {
         yield return new WaitForSeconds(2.2f);
-        DoorCanNotBeOpen();
         doorInfoText.gameObject.SetActive(false);
+        Invoke("DoorCanNotBeOpen", 2.0f);
     }
 
     public bool GetCanOpenDoor()
