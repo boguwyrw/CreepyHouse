@@ -16,7 +16,7 @@ public class DoorScript : MonoBehaviour
 
     private float doorWidth = 0.0f;
     private Vector3 rotationVector;
-    private float doorOpeningSpeed = 50.0f;
+    private float doorOpeningSpeed = 65.0f;
     private DoorsScript doorsScript;
     private bool openingDoor = false;
 
@@ -49,6 +49,7 @@ public class DoorScript : MonoBehaviour
         if (transform.localEulerAngles.y >= 90)
         {
             doorOpeningSpeed = 0.0f;
+            gameObject.GetComponent<BoxCollider>().enabled = false;
         }
     }
 
@@ -81,10 +82,11 @@ public class DoorScript : MonoBehaviour
                 if (nameOfItemInInventory.Equals("WreckingBar"))
                 {
                     wreckingBarButton.interactable = true;
+                    skeletonKeyButton.interactable = false;
                 }
-
-                if (nameOfItemInInventory.Equals("SkeletonKey"))
+                else if (nameOfItemInInventory.Equals("SkeletonKey"))
                 {
+                    wreckingBarButton.interactable = false;
                     skeletonKeyButton.interactable = true;
                 }
             }

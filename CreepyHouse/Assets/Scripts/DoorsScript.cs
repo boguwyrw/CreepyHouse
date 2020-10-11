@@ -71,6 +71,11 @@ public class DoorsScript : MonoBehaviour
         canOpenDoor = true;
     }
 
+    private void DoorCanNotBeOpen()
+    {
+        canOpenDoor = false;
+    }
+
     private IEnumerator DisplayPositiveInfo()
     {
         yield return new WaitForSeconds(1);
@@ -97,6 +102,7 @@ public class DoorsScript : MonoBehaviour
     private IEnumerator DeactivateDoorInfoText()
     {
         yield return new WaitForSeconds(2.2f);
+        DoorCanNotBeOpen();
         doorInfoText.gameObject.SetActive(false);
     }
 
