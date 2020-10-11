@@ -14,6 +14,20 @@ public class WardrobeScript : MonoBehaviour
     [SerializeField]
     private GameObject player;
 
+    [SerializeField]
+    private GameObject wardrobeLeftDoor;
+    [SerializeField]
+    private GameObject wardrobeRightDoor;
+    [SerializeField]
+    private Transform rotationAxisLeft;
+    [SerializeField]
+    private Transform rotationAxisRight;
+
+    private float doorOpeningSpeed = 40.0f;
+    private Vector3 leftDoorRotationVector;
+    private Vector3 rightDoorRotationVector;
+    private bool canOpenDoors = false;
+
     private int healthDamage = 2;
     private int minimumRequiredPoints = 8;
 
@@ -24,6 +38,18 @@ public class WardrobeScript : MonoBehaviour
     {
         playerStrength = player.transform.GetChild(1).gameObject.GetComponent<PlayerGuyScript>().GetPlayerStrength();
         playerDexterity = player.transform.GetChild(1).gameObject.GetComponent<PlayerGuyScript>().GetPlayerDexterity();
+
+        leftDoorRotationVector = new Vector3(rotationAxisLeft.position.x, rotationAxisLeft.position.y, rotationAxisLeft.position.z);
+        rightDoorRotationVector = new Vector3(rotationAxisRight.position.x, rotationAxisRight.position.y, rotationAxisRight.position.z);
+    }
+
+    private void Update()
+    {
+        if (canOpenDoors)
+        {
+            OpeningLeftDoor();
+            OpeningRightDoor();
+        }
     }
 
     private void PlayerUseForce()
@@ -47,6 +73,28 @@ public class WardrobeScript : MonoBehaviour
         PlayerGuyScript.playerHealth = PlayerGuyScript.playerHealth - healthDamage;
     }
 
+    private void OpeningLeftDoor()
+    {
+        wardrobeLeftDoor.transform.RotateAround(leftDoorRotationVector, Vector3.up, doorOpeningSpeed * Time.deltaTime);
+        if (wardrobeLeftDoor.transform.localEulerAngles.y >= 90)
+        {
+            canOpenDoors = false;
+            DeactivateButtons();
+            gameObject.GetComponent<BoxCollider>().enabled = false;
+        }
+    }
+
+    private void OpeningRightDoor()
+    {
+        wardrobeRightDoor.transform.RotateAround(rightDoorRotationVector, Vector3.down, doorOpeningSpeed * Time.deltaTime);
+    }
+
+    private void DeactivateButtons()
+    {
+        forceButton.gameObject.SetActive(false);
+        useItemButton.gameObject.SetActive(false);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == 9)
@@ -61,8 +109,7 @@ public class WardrobeScript : MonoBehaviour
     {
         if (other.gameObject.layer == 9)
         {
-            forceButton.gameObject.SetActive(false);
-            useItemButton.gameObject.SetActive(false);
+            DeactivateButtons();
         }
     }
 
@@ -88,10 +135,12 @@ public class WardrobeScript : MonoBehaviour
     public void ForceDoorButton()
     {
         PlayerUseForce();
+        canOpenDoors = true;
     }
 
     public void UseItemButton()
     {
         PlayerUseItem();
+        canOpenDoors = true;
     }
 }
