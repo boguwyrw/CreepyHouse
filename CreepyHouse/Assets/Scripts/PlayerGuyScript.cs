@@ -14,7 +14,7 @@ public class PlayerGuyScript : MonoBehaviour
     private int playerStamina = 0;
     private int playerArtifice = 0;
 
-    private void Start()
+    private void Awake()
     {
         playerHealth = newCharacter.health;
         playerStrength = newCharacter.strength;
