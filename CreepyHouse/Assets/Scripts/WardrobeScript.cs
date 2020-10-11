@@ -10,6 +10,8 @@ public class WardrobeScript : MonoBehaviour
     [SerializeField]
     private Button useItemButton;
     [SerializeField]
+    private Text wardrobeInfoText;
+    [SerializeField]
     private GameObject playerEquipment;
     [SerializeField]
     private GameObject player;
@@ -23,7 +25,7 @@ public class WardrobeScript : MonoBehaviour
     [SerializeField]
     private Transform rotationAxisRight;
 
-    private float doorOpeningSpeed = 40.0f;
+    private float doorOpeningSpeed = 50.0f;
     private Vector3 leftDoorRotationVector;
     private Vector3 rightDoorRotationVector;
     private bool canOpenDoors = false;
@@ -57,6 +59,11 @@ public class WardrobeScript : MonoBehaviour
         if (playerStrength < minimumRequiredPoints)
         {
             PlayerHealthDamage();
+            StartCoroutine(DisplayNegativeInfo());
+        }
+        else
+        {
+            StartCoroutine(DisplayPositiveInfo());
         }
     }
 
@@ -65,6 +72,11 @@ public class WardrobeScript : MonoBehaviour
         if (playerDexterity < minimumRequiredPoints)
         {
             PlayerHealthDamage();
+            StartCoroutine(DisplayNegativeInfo());
+        }
+        else
+        {
+            StartCoroutine(DisplayPositiveInfo());
         }
     }
 
@@ -79,7 +91,6 @@ public class WardrobeScript : MonoBehaviour
         if (wardrobeLeftDoor.transform.localEulerAngles.y >= 90)
         {
             canOpenDoors = false;
-            DeactivateButtons();
             gameObject.GetComponent<BoxCollider>().enabled = false;
         }
     }
@@ -93,6 +104,35 @@ public class WardrobeScript : MonoBehaviour
     {
         forceButton.gameObject.SetActive(false);
         useItemButton.gameObject.SetActive(false);
+    }
+
+    private IEnumerator DisplayPositiveInfo()
+    {
+        yield return new WaitForSeconds(1);
+        ActivateCouchInfoText();
+        wardrobeInfoText.color = Color.green;
+        wardrobeInfoText.text = "Congratulations, you opened wardrobe without problems";
+        StartCoroutine(DeactivateCouchInfoText());
+    }
+
+    private IEnumerator DisplayNegativeInfo()
+    {
+        yield return new WaitForSeconds(1);
+        ActivateCouchInfoText();
+        wardrobeInfoText.color = Color.red;
+        wardrobeInfoText.text = "You hurt yourself by loose handle";
+        StartCoroutine(DeactivateCouchInfoText());
+    }
+
+    private void ActivateCouchInfoText()
+    {
+        wardrobeInfoText.gameObject.SetActive(true);
+    }
+
+    private IEnumerator DeactivateCouchInfoText()
+    {
+        yield return new WaitForSeconds(2.2f);
+        wardrobeInfoText.gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -136,11 +176,13 @@ public class WardrobeScript : MonoBehaviour
     {
         PlayerUseForce();
         canOpenDoors = true;
+        DeactivateButtons();
     }
 
     public void UseItemButton()
     {
         PlayerUseItem();
         canOpenDoors = true;
+        DeactivateButtons();
     }
 }
