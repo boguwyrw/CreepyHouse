@@ -109,27 +109,27 @@ public class WardrobeScript : MonoBehaviour
     private IEnumerator DisplayPositiveInfo()
     {
         yield return new WaitForSeconds(1);
-        ActivateCouchInfoText();
+        ActivateWardrobeInfoText();
         wardrobeInfoText.color = Color.green;
         wardrobeInfoText.text = "Congratulations, you opened wardrobe without problems";
-        StartCoroutine(DeactivateCouchInfoText());
+        StartCoroutine(DeactivateWardrobeInfoText());
     }
 
     private IEnumerator DisplayNegativeInfo()
     {
         yield return new WaitForSeconds(1);
-        ActivateCouchInfoText();
+        ActivateWardrobeInfoText();
         wardrobeInfoText.color = Color.red;
         wardrobeInfoText.text = "You hurt yourself by loose handle";
-        StartCoroutine(DeactivateCouchInfoText());
+        StartCoroutine(DeactivateWardrobeInfoText());
     }
 
-    private void ActivateCouchInfoText()
+    private void ActivateWardrobeInfoText()
     {
         wardrobeInfoText.gameObject.SetActive(true);
     }
 
-    private IEnumerator DeactivateCouchInfoText()
+    private IEnumerator DeactivateWardrobeInfoText()
     {
         yield return new WaitForSeconds(2.2f);
         wardrobeInfoText.gameObject.SetActive(false);

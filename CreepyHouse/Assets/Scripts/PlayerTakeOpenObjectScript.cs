@@ -47,9 +47,9 @@ public class PlayerTakeOpenObjectScript : MonoBehaviour
 
     private void PlayerOpenObject()
     {
+        objectName = castHit.collider.name;
         if (castHit.collider.gameObject.layer == 12 && castHit.distance <= distanceToObject)
         {
-            objectName = castHit.collider.name;
             openClosedButton.gameObject.SetActive(true);
         }
         else
