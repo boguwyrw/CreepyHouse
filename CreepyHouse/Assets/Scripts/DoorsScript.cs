@@ -74,10 +74,10 @@ public class DoorsScript : MonoBehaviour
     private IEnumerator DisplayPositiveInfo()
     {
         yield return new WaitForSeconds(1);
-        ActivateCouchInfoText();
+        ActivateDoorInfoText();
         doorInfoText.color = Color.green;
         doorInfoText.text = "Congratulations, you opened door without problems";
-        StartCoroutine(DeactivateCouchInfoText());
+        StartCoroutine(DeactivateDoorInfoText());
     }
 
     private IEnumerator DisplayNegativeInfo()
