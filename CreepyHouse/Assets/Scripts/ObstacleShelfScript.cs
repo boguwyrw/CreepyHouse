@@ -42,11 +42,11 @@ public class ObstacleShelfScript : MonoBehaviour
 
     private void InteractionWithShelf()
     {
-        boxColliderSize.z = 1;
+        boxColliderSize.z = 0.5f;
         boxColliderSize = new Vector3(boxColliderSize.x, boxColliderSize.y, boxColliderSize.z);
         shelfBoxCollider.size = boxColliderSize;
 
-        boxColliderCenter.z = 0;
+        boxColliderCenter.z = 0.0f;
         boxColliderCenter = new Vector3(boxColliderCenter.x, boxColliderCenter.y, boxColliderCenter.z);
         shelfBoxCollider.center = boxColliderCenter;
 

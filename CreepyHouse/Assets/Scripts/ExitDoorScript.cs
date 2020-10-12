@@ -11,15 +11,29 @@ public class ExitDoorScript : MonoBehaviour
     private Text exitDoorInfoText;
     [SerializeField]
     private GameObject playerEquipment;
+    [SerializeField]
+    private Transform rotationPoint;
 
-    private float doorWidth = 0.0f;
     private Vector3 rotationVector;
     private float doorOpeningSpeed = 50.0f;
+    private bool canOpenExitDoor = false;
 
     private void Start()
     {
-        doorWidth = gameObject.GetComponent<Renderer>().bounds.size.x;
-        rotationVector = new Vector3(transform.position.x + doorWidth / 2, transform.position.y, transform.position.z);
+        rotationVector = new Vector3(rotationPoint.position.x, rotationPoint.position.y, rotationPoint.position.z);
+    }
+
+    private void Update()
+    {
+        if (canOpenExitDoor)
+        {
+            transform.RotateAround(rotationVector, Vector3.up, doorOpeningSpeed * Time.deltaTime);
+            if (transform.localEulerAngles.y >= 180.0f)
+            {
+                doorOpeningSpeed = 0.0f;
+            }
+        }
+        
     }
 
     private void CheckPlayerEquipment()
@@ -47,6 +61,6 @@ public class ExitDoorScript : MonoBehaviour
 
     public void OpenExitDoorButton()
     {
-        transform.RotateAround(rotationVector, Vector3.up, doorOpeningSpeed * Time.deltaTime);
+        canOpenExitDoor = true;
     }
 }
