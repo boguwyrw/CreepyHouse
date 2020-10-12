@@ -23,7 +23,7 @@ public class ChestScript : MonoBehaviour
 
     private bool canOpenChest = false;
     private Vector3 rotationVector;
-    private float chestWingSpeed = 50.0f;
+    private float chestWingSpeed = 150.0f;
 
     private int healthDamage = 2;
     private int minimumRequiredPoints = 8;
@@ -47,7 +47,7 @@ public class ChestScript : MonoBehaviour
         if (canOpenChest)
         {
             chectWing.transform.RotateAround(rotationVector, Vector3.forward, chestWingSpeed * Time.deltaTime);
-            if (chectWing.transform.localEulerAngles.x <= 270.0f)
+            if (chectWing.transform.localEulerAngles.x <= 272.5f)
             {
                 chestWingSpeed = 0.0f;
             }
