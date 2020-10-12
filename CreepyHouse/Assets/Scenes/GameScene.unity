@@ -14147,6 +14147,8 @@ MonoBehaviour:
   useHandsButton: {fileID: 503947028}
   useItemButton: {fileID: 1423203704}
   shelfInfoText: {fileID: 967078925}
+  player: {fileID: 1334293281}
+  playerEquipment: {fileID: 2024391653}
 --- !u!1001 &1614824376
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16258,8 +16260,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1879986917}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -4, y: 6.3, z: 56}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalPosition: {x: -4, y: 5.98, z: 56}
+  m_LocalScale: {x: 2, y: 1.5, z: 2}
   m_Children:
   - {fileID: 1879690951}
   - {fileID: 1879690947}
@@ -16341,6 +16343,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1879690949}
+  - component: {fileID: 1879986918}
   m_Layer: 0
   m_Name: Chest
   m_TagString: Untagged
@@ -16348,6 +16351,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1879986918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1879986917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 268876a3fcf25d44cb9a2cd0221695ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1879986919
 GameObject:
   m_ObjectHideFlags: 0
@@ -18305,8 +18320,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6656800382247064}
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -3.4, y: 5.8, z: 56.1}
-  m_LocalScale: {x: 0.50000024, y: 0.50000024, z: 0.5}
+  m_LocalPosition: {x: -3.4, y: 5.7, z: 56.1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 1679013549}
   m_RootOrder: 5
