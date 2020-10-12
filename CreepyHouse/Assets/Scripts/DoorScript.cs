@@ -30,6 +30,9 @@ public class DoorScript : MonoBehaviour
 
         doorsScript = transform.parent.gameObject.GetComponent<DoorsScript>();
         playerTakeOpen = player.GetComponent<PlayerTakeOpenObjectScript>();
+
+        wreckingBarButton.interactable = false;
+        skeletonKeyButton.interactable = false;
     }
 
     private void Update()
@@ -88,19 +91,17 @@ public class DoorScript : MonoBehaviour
                 if (nameOfItemInInventory.Equals("WreckingBar"))
                 {
                     wreckingBarButton.interactable = true;
-                    skeletonKeyButton.interactable = false;
                 }
-                else if (nameOfItemInInventory.Equals("SkeletonKey"))
+            }
+
+            for (int i = 0; i < playerEquipment.transform.childCount; i++)
+            {
+                string nameOfItemInInventory = playerEquipment.transform.GetChild(i).name;
+                if (nameOfItemInInventory.Equals("SkeletonKey"))
                 {
-                    wreckingBarButton.interactable = false;
                     skeletonKeyButton.interactable = true;
                 }
             }
-        }
-        else
-        {
-            wreckingBarButton.interactable = false;
-            skeletonKeyButton.interactable = false;
         }
     }
 }

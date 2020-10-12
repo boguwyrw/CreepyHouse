@@ -13019,7 +13019,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 51564546}
+      - m_Target: {fileID: 1879986918}
         m_MethodName: WreckingBarButton
         m_Mode: 1
         m_Arguments:
@@ -13778,8 +13778,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 51564546}
-        m_MethodName: SkeletonKeyButton
+      - m_Target: {fileID: 1879986918}
+        m_MethodName: AxButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -17587,6 +17587,8 @@ MonoBehaviour:
   chestInfoText: {fileID: 1566375463}
   playerEquipment: {fileID: 2024391653}
   player: {fileID: 1334293281}
+  chectWing: {fileID: 1879986913}
+  chectBolt: {fileID: 1879690947}
 --- !u!1 &1879986919
 GameObject:
   m_ObjectHideFlags: 0
