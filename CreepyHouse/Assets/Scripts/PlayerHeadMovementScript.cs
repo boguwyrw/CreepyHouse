@@ -11,7 +11,7 @@ public class PlayerHeadMovementScript : MonoBehaviour
     private Transform playerBody;
     private float horizontalRotation = 0.0f;
     private float verticalRotation = 0.0f;
-    private float rotationLimit = 60.0f;
+    private float rotationLimit = 80.0f;
     private float headMovementSpeed = 0.65f;
 
     private void Start()

@@ -46,13 +46,48 @@ public class ChestScript : MonoBehaviour
     {
         if (canOpenChest)
         {
-            chectWing.transform.RotateAround(rotationVector, Vector3.forward, chestWingSpeed * Time.deltaTime);
-            if (chectWing.transform.localEulerAngles.x <= 272.5f)
-            {
-                chestWingSpeed = 0.0f;
-            }
+            OpeningChest();
         }
-        Debug.Log(chectWing.transform.localEulerAngles.x);
+    }
+
+    private void OpeningChest()
+    {
+        chectWing.transform.RotateAround(rotationVector, Vector3.forward, chestWingSpeed * Time.deltaTime);
+        if (chectWing.transform.localEulerAngles.x <= 272.5f)
+        {
+            chestWingSpeed = 0.0f;
+        }
+    }
+
+    private void PlayerUseWreckingBar()
+    {
+        if (playerDexterity < minimumRequiredPoints)
+        {
+            PlayerHealthDamage();
+            StartCoroutine(DisplayNegativeInfo());
+        }
+        else
+        {
+            StartCoroutine(DisplayPositiveInfo());
+        }
+    }
+
+    private void PlayerUseAx()
+    {
+        if (playerStrength < minimumRequiredPoints)
+        {
+            PlayerHealthDamage();
+            StartCoroutine(DisplayNegativeInfo());
+        }
+        else
+        {
+            StartCoroutine(DisplayPositiveInfo());
+        }
+    }
+
+    private void PlayerHealthDamage()
+    {
+        PlayerGuyScript.playerHealth = PlayerGuyScript.playerHealth - healthDamage;
     }
 
     private void PlayerCanOpenChest()
@@ -69,6 +104,35 @@ public class ChestScript : MonoBehaviour
     private void DeactivateChest()
     {
         gameObject.GetComponent<BoxCollider>().enabled = false;
+    }
+
+    private IEnumerator DisplayPositiveInfo()
+    {
+        yield return new WaitForSeconds(1);
+        ActivateChestInfoText();
+        chestInfoText.color = Color.green;
+        chestInfoText.text = "Congratulations, you opened chest without problems";
+        StartCoroutine(DeactivateChestInfoText());
+    }
+
+    private IEnumerator DisplayNegativeInfo()
+    {
+        yield return new WaitForSeconds(1);
+        ActivateChestInfoText();
+        chestInfoText.color = Color.red;
+        chestInfoText.text = "You hurt yourself by sharp lid";
+        StartCoroutine(DeactivateChestInfoText());
+    }
+
+    private void ActivateChestInfoText()
+    {
+        chestInfoText.gameObject.SetActive(true);
+    }
+
+    private IEnumerator DeactivateChestInfoText()
+    {
+        yield return new WaitForSeconds(2.2f);
+        chestInfoText.gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -118,6 +182,7 @@ public class ChestScript : MonoBehaviour
         PlayerCanOpenChest();
         DeactivateButtons();
         DeactivateChest();
+        PlayerUseWreckingBar();
     }
 
     public void AxButton()
@@ -125,5 +190,6 @@ public class ChestScript : MonoBehaviour
         PlayerCanOpenChest();
         DeactivateButtons();
         DeactivateChest();
+        PlayerUseAx();
     }
 }

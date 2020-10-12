@@ -36,6 +36,8 @@ public class ObstacleShelfScript : MonoBehaviour
 
         playerStamina = player.transform.GetChild(1).gameObject.GetComponent<PlayerGuyScript>().GetPlayerStamina();
         playerArtifice = player.transform.GetChild(1).gameObject.GetComponent<PlayerGuyScript>().GetPlayerArtifice();
+
+        useItemButton.interactable = false;
     }
 
     private void InteractionWithShelf()
@@ -128,15 +130,7 @@ public class ObstacleShelfScript : MonoBehaviour
                 {
                     useItemButton.interactable = true;
                 }
-                else
-                {
-                    useItemButton.interactable = false;
-                }
             }
-        }
-        else
-        {
-            useItemButton.interactable = false;
         }
     }
 

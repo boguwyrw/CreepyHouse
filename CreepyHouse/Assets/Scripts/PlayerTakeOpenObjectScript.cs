@@ -19,7 +19,7 @@ public class PlayerTakeOpenObjectScript : MonoBehaviour
 
     private string objectName = "";
     private bool canOpen = false;
-    private float distanceToObject = 2.5f;
+    private float distanceToObject = 3.0f;
 
     private void Update()
     {
