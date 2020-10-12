@@ -9,6 +9,8 @@ public class CharactersScript : MonoBehaviour
     [SerializeField]
     private Button startGameButton;
     [SerializeField]
+    private Button backButton;
+    [SerializeField]
     private Toggle cleverGuyToggle;
     [SerializeField]
     private Toggle strongGuyToggle;
@@ -58,5 +60,10 @@ public class CharactersScript : MonoBehaviour
     public void StartGameButton()
     {
         SceneManager.LoadScene("GameScene");
+    }
+
+    public void BackButton()
+    {
+        SceneManager.LoadScene("MainMenuScene");
     }
 }
