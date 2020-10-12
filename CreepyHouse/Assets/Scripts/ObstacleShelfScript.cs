@@ -25,6 +25,19 @@ public class ObstacleShelfScript : MonoBehaviour
         boxColliderCenter = new Vector3(shelfBoxCollider.center.x, shelfBoxCollider.center.y, shelfBoxCollider.center.z);
     }
 
+    private void InteractionWithShelf()
+    {
+        boxColliderSize.z = 1;
+        boxColliderSize = new Vector3(boxColliderSize.x, boxColliderSize.y, boxColliderSize.z);
+        shelfBoxCollider.size = boxColliderSize;
+
+        boxColliderCenter.z = 0;
+        boxColliderCenter = new Vector3(boxColliderCenter.x, boxColliderCenter.y, boxColliderCenter.z);
+        shelfBoxCollider.center = boxColliderCenter;
+
+        transform.RotateAround(rotationAxis.position, Vector3.left, -15);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == 9)
@@ -36,18 +49,12 @@ public class ObstacleShelfScript : MonoBehaviour
     }
 
     public void UseHandsButton()
-    { 
-        
+    {
+        InteractionWithShelf();
     }
 
     public void UseItemButton()
     {
-        boxColliderSize.z = 1;
-        boxColliderSize = new Vector3(boxColliderSize.x, boxColliderSize.y, boxColliderSize.z);
-        shelfBoxCollider.size = boxColliderSize;
-
-        boxColliderCenter.z = 0;
-        boxColliderCenter = new Vector3(boxColliderCenter.x, boxColliderCenter.y, boxColliderCenter.z);
-        shelfBoxCollider.center = boxColliderCenter;
+        InteractionWithShelf();
     }
 }
