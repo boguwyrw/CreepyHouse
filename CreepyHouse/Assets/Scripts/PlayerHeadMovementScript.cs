@@ -12,7 +12,7 @@ public class PlayerHeadMovementScript : MonoBehaviour
     private float horizontalRotation = 0.0f;
     private float verticalRotation = 0.0f;
     private float rotationLimit = 80.0f;
-    private float headMovementSpeed = 0.65f;
+    private float headMovementSpeed = 0.85f;
 
     private void Start()
     {
@@ -33,11 +33,11 @@ public class PlayerHeadMovementScript : MonoBehaviour
 
         if (Time.timeScale == 0.0f)
         {
-            headMovementSpeed = 0.0f;
+            headMovementSpeed = 0.01f;
         }
         else
         {
-            headMovementSpeed = 0.65f;
+            headMovementSpeed = 0.85f;
         }
     }
 }
