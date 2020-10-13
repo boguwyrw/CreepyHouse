@@ -12,6 +12,11 @@ public class GameControllerScript : MonoBehaviour
     [SerializeField]
     private Button quitGameButton;
 
+    private void Awake()
+    {
+        Time.timeScale = 1.0f;
+    }
+
     private void Update()
     {
         if (PlayerGuyScript.playerHealth == 0)

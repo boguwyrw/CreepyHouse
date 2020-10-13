@@ -30,5 +30,14 @@ public class PlayerHeadMovementScript : MonoBehaviour
         direction.y = Mathf.Clamp(direction.y, -rotationLimit, rotationLimit);
         transform.localRotation = Quaternion.AngleAxis(-direction.y * headMovementSpeed, Vector3.right);
         playerBody.localRotation = Quaternion.AngleAxis(direction.x * headMovementSpeed, Vector3.up);
+
+        if (Time.timeScale == 0.0f)
+        {
+            headMovementSpeed = 0.0f;
+        }
+        else
+        {
+            headMovementSpeed = 0.65f;
+        }
     }
 }
