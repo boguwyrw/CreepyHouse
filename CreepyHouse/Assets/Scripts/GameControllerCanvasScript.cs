@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class GameCanvasScript : MonoBehaviour
+public class GameControllerCanvasScript : MonoBehaviour
 {
     [SerializeField]
     private Button resumeGameButton;

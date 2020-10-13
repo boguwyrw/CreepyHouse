@@ -7,6 +7,10 @@ public class GameControllerScript : MonoBehaviour
 {
     [SerializeField]
     private Text endGameInfoText;
+    [SerializeField]
+    private Button resumeGameButton;
+    [SerializeField]
+    private Button quitGameButton;
 
     private void Update()
     {
@@ -21,6 +25,7 @@ public class GameControllerScript : MonoBehaviour
     private void EndGame()
     {
         endGameInfoText.gameObject.SetActive(true);
+        quitGameButton.gameObject.SetActive(true);
         Time.timeScale = 0.0f;
     }
 
@@ -29,6 +34,7 @@ public class GameControllerScript : MonoBehaviour
         if (other.gameObject.layer == 9)
         {
             endGameInfoText.text = "CONGRATULATION, YOU WIN";
+            resumeGameButton.interactable = false;
             EndGame();
         }
     }
