@@ -30,9 +30,6 @@ public class DoorScript : MonoBehaviour
 
         doorsScript = transform.parent.gameObject.GetComponent<DoorsScript>();
         playerTakeOpen = player.GetComponent<PlayerTakeOpenObjectScript>();
-
-        wreckingBarButton.interactable = false;
-        skeletonKeyButton.interactable = false;
     }
 
     private void Update()
@@ -49,11 +46,13 @@ public class DoorScript : MonoBehaviour
     private void OpeningDoor()
     {
         transform.RotateAround(rotationVector, Vector3.up, doorOpeningSpeed * Time.deltaTime);
+        if (transform.localEulerAngles.y >= 30)
+        {
+            gameObject.GetComponent<BoxCollider>().enabled = false;
+        }
         if (transform.localEulerAngles.y >= 90)
         {
             doorOpeningSpeed = 0.0f;
-            TurnOffButtons();
-            gameObject.GetComponent<BoxCollider>().enabled = false;
         }
     }
 

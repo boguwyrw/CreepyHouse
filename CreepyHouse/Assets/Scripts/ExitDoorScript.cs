@@ -27,13 +27,19 @@ public class ExitDoorScript : MonoBehaviour
     {
         if (canOpenExitDoor)
         {
-            transform.RotateAround(rotationVector, Vector3.up, doorOpeningSpeed * Time.deltaTime);
-            if (transform.localEulerAngles.y >= 180.0f)
-            {
-                doorOpeningSpeed = 0.0f;
-            }
+            OpeningExitDoor();
         }
         
+    }
+
+    private void OpeningExitDoor()
+    {
+        transform.RotateAround(rotationVector, Vector3.up, doorOpeningSpeed * Time.deltaTime);
+        if (transform.localEulerAngles.y >= 180.0f)
+        {
+            doorOpeningSpeed = 0.0f;
+            gameObject.GetComponent<BoxCollider>().enabled = false;
+        }
     }
 
     private void CheckPlayerEquipment()
@@ -47,8 +53,35 @@ public class ExitDoorScript : MonoBehaviour
                 {
                     openExitDoorButton.gameObject.SetActive(true);
                 }
+                else
+                {
+                    ActivateExitDoorInfoText();
+                    exitDoorInfoText.color = Color.red;
+                    exitDoorInfoText.text = "You don't have the Key";
+                    //StartCoroutine(DeactivateExitDoorInfoText());
+                }
             }
         }
+    }
+
+    private IEnumerator DisplayPositiveInfo()
+    {
+        yield return new WaitForSeconds(1);
+        ActivateExitDoorInfoText();
+        exitDoorInfoText.color = Color.green;
+        exitDoorInfoText.text = "Congratulations, you can leave Creepy House";
+        StartCoroutine(DeactivateExitDoorInfoText());
+    }
+
+    private void ActivateExitDoorInfoText()
+    {
+        exitDoorInfoText.gameObject.SetActive(true);
+    }
+
+    private IEnumerator DeactivateExitDoorInfoText()
+    {
+        yield return new WaitForSeconds(2.2f);
+        exitDoorInfoText.gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -59,8 +92,19 @@ public class ExitDoorScript : MonoBehaviour
         }
     }
 
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.layer == 9)
+        {
+            openExitDoorButton.gameObject.SetActive(false);
+            exitDoorInfoText.text = "";
+            exitDoorInfoText.gameObject.SetActive(false);
+        }
+    }
+
     public void OpenExitDoorButton()
     {
         canOpenExitDoor = true;
+        StartCoroutine(DisplayPositiveInfo());
     }
 }

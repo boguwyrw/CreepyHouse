@@ -26,6 +26,9 @@ public class DoorsScript : MonoBehaviour
     {
         playerStamina = player.transform.GetChild(1).gameObject.GetComponent<PlayerGuyScript>().GetPlayerStamina();
         playerArtifice = player.transform.GetChild(1).gameObject.GetComponent<PlayerGuyScript>().GetPlayerArtifice();
+
+        wreckingBarButton.interactable = false;
+        skeletonKeyButton.interactable = false;
     }
 
     private void PlayerUseWreckingBar()
@@ -102,7 +105,7 @@ public class DoorsScript : MonoBehaviour
     {
         yield return new WaitForSeconds(2.2f);
         doorInfoText.gameObject.SetActive(false);
-        Invoke("DoorCanNotBeOpen", 2.0f);
+        Invoke("DoorCanNotBeOpen", 3.0f);
     }
 
     public bool GetCanOpenDoor()
