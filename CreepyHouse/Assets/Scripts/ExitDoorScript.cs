@@ -52,13 +52,13 @@ public class ExitDoorScript : MonoBehaviour
                 if (nameOfItemInInventory.Equals("Key"))
                 {
                     openExitDoorButton.gameObject.SetActive(true);
+                    exitDoorInfoText.text = "";
                 }
                 else
                 {
-                    ActivateExitDoorInfoText();
                     exitDoorInfoText.color = Color.red;
                     exitDoorInfoText.text = "You don't have the Key";
-                    //StartCoroutine(DeactivateExitDoorInfoText());
+                    ActivateExitDoorInfoText();
                 }
             }
         }
@@ -97,7 +97,6 @@ public class ExitDoorScript : MonoBehaviour
         if (other.gameObject.layer == 9)
         {
             openExitDoorButton.gameObject.SetActive(false);
-            exitDoorInfoText.text = "";
             exitDoorInfoText.gameObject.SetActive(false);
         }
     }
