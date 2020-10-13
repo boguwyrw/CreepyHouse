@@ -22284,6 +22284,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rightJoystick: {fileID: 1383150238}
+  headMovementSpeed: 80
 --- !u!64 &2016188715
 MeshCollider:
   m_ObjectHideFlags: 0

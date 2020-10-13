@@ -43,6 +43,8 @@ public class WardrobeScript : MonoBehaviour
 
         leftDoorRotationVector = new Vector3(rotationAxisLeft.position.x, rotationAxisLeft.position.y, rotationAxisLeft.position.z);
         rightDoorRotationVector = new Vector3(rotationAxisRight.position.x, rotationAxisRight.position.y, rotationAxisRight.position.z);
+
+        useItemButton.interactable = false;
     }
 
     private void Update()
@@ -165,10 +167,6 @@ public class WardrobeScript : MonoBehaviour
                     useItemButton.interactable = true;
                 }
             }
-        }
-        else
-        {
-            useItemButton.interactable = false;
         }
     }
 
