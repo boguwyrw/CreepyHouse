@@ -12,19 +12,24 @@ public class GameControllerScript : MonoBehaviour
     {
         if (PlayerGuyScript.playerHealth == 0)
         {
-            Time.timeScale = 0.0f;
             endGameInfoText.color = Color.red;
             endGameInfoText.text = "SORRY, YOU LOST";
+            EndGame();
         }
+    }
+
+    private void EndGame()
+    {
+        endGameInfoText.gameObject.SetActive(true);
+        Time.timeScale = 0.0f;
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == 9)
         {
-            Time.timeScale = 0.0f;
             endGameInfoText.text = "CONGRATULATION, YOU WIN";
-            endGameInfoText.gameObject.SetActive(true);
+            EndGame();
         }
     }
 }

@@ -15,8 +15,11 @@ public class GameCanvasScript : MonoBehaviour
     {
         Time.timeScale = 0.0f;
         resumeGameButton.gameObject.SetActive(true);
-        resumeGameButton.gameObject.GetComponent<RectTransform>().SetAsFirstSibling();
         quitGameButton.gameObject.SetActive(true);
+        if (PlayerGuyScript.playerHealth == 0)
+        {
+            resumeGameButton.interactable = false;
+        }
     }
 
     public void ResumeGameButton()
