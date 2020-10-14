@@ -42,28 +42,6 @@ public class ExitDoorScript : MonoBehaviour
         }
     }
 
-    private void CheckPlayerEquipment()
-    {
-        if (playerEquipment.transform.childCount > 0)
-        {
-            for (int i = 0; i < playerEquipment.transform.childCount; i++)
-            {
-                string nameOfItemInInventory = playerEquipment.transform.GetChild(i).name;
-                if (nameOfItemInInventory.Equals("Key"))
-                {
-                    openExitDoorButton.gameObject.SetActive(true);
-                    exitDoorInfoText.text = "";
-                }
-                else
-                {
-                    exitDoorInfoText.color = Color.red;
-                    exitDoorInfoText.text = "You don't have the Key";
-                    ActivateExitDoorInfoText();
-                }
-            }
-        }
-    }
-
     private IEnumerator DisplayPositiveInfo()
     {
         yield return new WaitForSeconds(1);
@@ -82,6 +60,25 @@ public class ExitDoorScript : MonoBehaviour
     {
         yield return new WaitForSeconds(2.2f);
         exitDoorInfoText.gameObject.SetActive(false);
+    }
+
+    private void CheckPlayerEquipment()
+    {
+        for (int i = 0; i < playerEquipment.transform.childCount; i++)
+        {
+            string nameOfItemInInventory = playerEquipment.transform.GetChild(i).name;
+            if (nameOfItemInInventory.Equals("Key"))
+            {
+                openExitDoorButton.gameObject.SetActive(true);
+                exitDoorInfoText.text = "";
+            }
+            else
+            {
+                exitDoorInfoText.color = Color.red;
+                exitDoorInfoText.text = "You don't have the Key";
+                ActivateExitDoorInfoText();
+            }
+        }
     }
 
     private void OnTriggerEnter(Collider other)

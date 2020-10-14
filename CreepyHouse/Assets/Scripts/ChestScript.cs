@@ -135,6 +135,23 @@ public class ChestScript : MonoBehaviour
         chestInfoText.gameObject.SetActive(false);
     }
 
+    private void CheckPlayerEquipment()
+    {
+        for (int i = 0; i < playerEquipment.transform.childCount; i++)
+        {
+            string nameOfItemInInventory = playerEquipment.transform.GetChild(i).name;
+            if (nameOfItemInInventory.Equals("WreckingBar"))
+            {
+                wreckingBarButton.interactable = true;
+            }
+
+            if (nameOfItemInInventory.Equals("Ax"))
+            {
+                axButton.interactable = true;
+            }
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == 9)
@@ -150,30 +167,6 @@ public class ChestScript : MonoBehaviour
         if (other.gameObject.layer == 9)
         {
             DeactivateButtons();
-        }
-    }
-
-    private void CheckPlayerEquipment()
-    {
-        if (playerEquipment.transform.childCount > 0)
-        {
-            for (int i = 0; i < playerEquipment.transform.childCount; i++)
-            {
-                string nameOfItemInInventory = playerEquipment.transform.GetChild(i).name;
-                if (nameOfItemInInventory.Equals("WreckingBar"))
-                {
-                    wreckingBarButton.interactable = true;
-                }
-            }
-
-            for (int i = 0; i < playerEquipment.transform.childCount; i++)
-            {
-                string nameOfItemInInventory = playerEquipment.transform.GetChild(i).name;
-                if (nameOfItemInInventory.Equals("Ax"))
-                {
-                    axButton.interactable = true;
-                }
-            }
         }
     }
 

@@ -62,6 +62,23 @@ public class DoorScript : MonoBehaviour
         skeletonKeyButton.gameObject.SetActive(false);
     }
 
+    private void CheckPlayerEquipment()
+    {
+        for (int i = 0; i < playerEquipment.transform.childCount; i++)
+        {
+            string nameOfItemInInventory = playerEquipment.transform.GetChild(i).name;
+            if (nameOfItemInInventory.Equals("WreckingBar"))
+            {
+                wreckingBarButton.interactable = true;
+            }
+
+            if (nameOfItemInInventory.Equals("SkeletonKey"))
+            {
+                skeletonKeyButton.interactable = true;
+            }
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == 9)
@@ -77,30 +94,6 @@ public class DoorScript : MonoBehaviour
         if (other.gameObject.layer == 9)
         {
             TurnOffButtons();
-        }
-    }
-
-    private void CheckPlayerEquipment()
-    {
-        if (playerEquipment.transform.childCount > 0)
-        {
-            for (int i = 0; i < playerEquipment.transform.childCount; i++)
-            {
-                string nameOfItemInInventory = playerEquipment.transform.GetChild(i).name;
-                if (nameOfItemInInventory.Equals("WreckingBar"))
-                {
-                    wreckingBarButton.interactable = true;
-                }
-            }
-
-            for (int i = 0; i < playerEquipment.transform.childCount; i++)
-            {
-                string nameOfItemInInventory = playerEquipment.transform.GetChild(i).name;
-                if (nameOfItemInInventory.Equals("SkeletonKey"))
-                {
-                    skeletonKeyButton.interactable = true;
-                }
-            }
         }
     }
 }

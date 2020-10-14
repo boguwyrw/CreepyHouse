@@ -121,15 +121,12 @@ public class ObstacleShelfScript : MonoBehaviour
 
     private void CheckPlayerEquipment()
     {
-        if (playerEquipment.transform.childCount > 0)
+        for (int i = 0; i < playerEquipment.transform.childCount; i++)
         {
-            for (int i = 0; i < playerEquipment.transform.childCount; i++)
+            string nameOfItemInInventory = playerEquipment.transform.GetChild(i).name;
+            if (nameOfItemInInventory.Equals("Board"))
             {
-                string nameOfItemInInventory = playerEquipment.transform.GetChild(i).name;
-                if (nameOfItemInInventory.Equals("Board"))
-                {
-                    useItemButton.interactable = true;
-                }
+                useItemButton.interactable = true;
             }
         }
     }

@@ -137,6 +137,18 @@ public class WardrobeScript : MonoBehaviour
         wardrobeInfoText.gameObject.SetActive(false);
     }
 
+    private void CheckPlayerEquipment()
+    {
+        for (int i = 0; i < playerEquipment.transform.childCount; i++)
+        {
+            string nameOfItemInInventory = playerEquipment.transform.GetChild(i).name;
+            if (nameOfItemInInventory.Equals("Screwdriver"))
+            {
+                useItemButton.interactable = true;
+            }
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == 9)
@@ -152,21 +164,6 @@ public class WardrobeScript : MonoBehaviour
         if (other.gameObject.layer == 9)
         {
             DeactivateButtons();
-        }
-    }
-
-    private void CheckPlayerEquipment()
-    {
-        if (playerEquipment.transform.childCount > 0)
-        {
-            for (int i = 0; i < playerEquipment.transform.childCount; i++)
-            {
-                string nameOfItemInInventory = playerEquipment.transform.GetChild(i).name;
-                if (nameOfItemInInventory.Equals("Screwdriver"))
-                {
-                    useItemButton.interactable = true;
-                }
-            }
         }
     }
 
