@@ -28,13 +28,12 @@ public class ObstacleCouchScript : MonoBehaviour
 
     private void Start()
     {
+        playerStrength = player.GetComponent<PlayerScript>().GetPlayerStrength();
+        playerDexterity = player.GetComponent<PlayerScript>().GetPlayerDexterity();
+
         jumpDirection = new Vector3(player.transform.position.x, player.transform.position.y + 2.0f, player.transform.position.z + 1.0f);
 
         couchRotationVector = new Vector3(transform.position.x - 1.8f, transform.position.y, transform.position.z);
-
-        playerStrength = player.transform.GetChild(1).gameObject.GetComponent<PlayerGuyScript>().GetPlayerStrength();
-        playerDexterity = player.transform.GetChild(1).gameObject.GetComponent<PlayerGuyScript>().GetPlayerDexterity();
-
     }
 
     private void Update()
@@ -79,7 +78,7 @@ public class ObstacleCouchScript : MonoBehaviour
 
     private void PlayerHealthDamage()
     {
-        PlayerGuyScript.playerHealth = PlayerGuyScript.playerHealth - healthDamage;
+        PlayerScript.playerHealth = PlayerScript.playerHealth - healthDamage;
     }
 
     private void TurnOffObstacleCouch()

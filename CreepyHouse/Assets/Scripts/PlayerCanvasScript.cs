@@ -10,6 +10,6 @@ public class PlayerCanvasScript : MonoBehaviour
 
     private void Update()
     {
-        healthPointsText.text = "Health points: " + PlayerGuyScript.playerHealth;
+        healthPointsText.text = "Health points: " + PlayerScript.playerHealth;
     }
 }

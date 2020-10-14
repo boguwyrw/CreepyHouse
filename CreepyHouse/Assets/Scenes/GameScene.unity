@@ -10093,7 +10093,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68b93623b6fc08940b3b1fb4688790a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newCharacter: {fileID: 11400000, guid: 41ac7d8b5f4e211418cf5f84d184422c, type: 2}
+  newCharacter: {fileID: 0}
 --- !u!1 &1041691478
 GameObject:
   m_ObjectHideFlags: 0
@@ -13685,8 +13685,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb293929e4d0fd64db90848a7247470d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCleverGuy: {fileID: 711064284}
-  playerStrongGuy: {fileID: 1038699269}
+  playerCleverGuy: {fileID: 11400000, guid: fb286fdda1bedf24e8973845be280745, type: 2}
+  playerStrongGuy: {fileID: 11400000, guid: ccb6c8c547a13f643a481ab3ede619db, type: 2}
 --- !u!54 &1334293288
 Rigidbody:
   m_ObjectHideFlags: 0

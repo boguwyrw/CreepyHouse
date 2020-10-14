@@ -24,8 +24,8 @@ public class DoorsScript : MonoBehaviour
 
     private void Start()
     {
-        playerStamina = player.transform.GetChild(1).gameObject.GetComponent<PlayerGuyScript>().GetPlayerStamina();
-        playerArtifice = player.transform.GetChild(1).gameObject.GetComponent<PlayerGuyScript>().GetPlayerArtifice();
+        playerStamina = player.GetComponent<PlayerScript>().GetPlayerStamina();
+        playerArtifice = player.GetComponent<PlayerScript>().GetPlayerArtifice();
 
         wreckingBarButton.interactable = false;
         skeletonKeyButton.interactable = false;
@@ -59,7 +59,7 @@ public class DoorsScript : MonoBehaviour
 
     private void PlayerHealthDamage()
     {
-        PlayerGuyScript.playerHealth = PlayerGuyScript.playerHealth - healthDamage;
+        PlayerScript.playerHealth = PlayerScript.playerHealth - healthDamage;
     }
 
     private void DeactivateButtons()

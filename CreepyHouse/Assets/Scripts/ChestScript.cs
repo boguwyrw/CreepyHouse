@@ -33,8 +33,8 @@ public class ChestScript : MonoBehaviour
 
     private void Start()
     {
-        playerStrength = player.transform.GetChild(1).gameObject.GetComponent<PlayerGuyScript>().GetPlayerStrength();
-        playerDexterity = player.transform.GetChild(1).gameObject.GetComponent<PlayerGuyScript>().GetPlayerDexterity();
+        playerStrength = player.GetComponent<PlayerScript>().GetPlayerStrength();
+        playerDexterity = player.GetComponent<PlayerScript>().GetPlayerDexterity();
 
         rotationVector = new Vector3(chectBolt.position.x, chectBolt.position.y, chectBolt.position.z);
 
@@ -87,7 +87,7 @@ public class ChestScript : MonoBehaviour
 
     private void PlayerHealthDamage()
     {
-        PlayerGuyScript.playerHealth = PlayerGuyScript.playerHealth - healthDamage;
+        PlayerScript.playerHealth = PlayerScript.playerHealth - healthDamage;
     }
 
     private void PlayerCanOpenChest()

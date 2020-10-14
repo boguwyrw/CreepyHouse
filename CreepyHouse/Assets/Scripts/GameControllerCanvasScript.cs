@@ -16,7 +16,7 @@ public class GameControllerCanvasScript : MonoBehaviour
         Time.timeScale = 0.0f;
         resumeGameButton.gameObject.SetActive(true);
         quitGameButton.gameObject.SetActive(true);
-        if (PlayerGuyScript.playerHealth == 0)
+        if (PlayerScript.playerHealth == 0)
         {
             resumeGameButton.interactable = false;
         }

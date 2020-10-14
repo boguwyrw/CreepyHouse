@@ -50,9 +50,12 @@ public class CharactersScript : MonoBehaviour
         if (cleverGuyToggle.isOn == true)
         {
             cleverGuy = true;
+            strongGuy = false;
         }
-        else if (strongGuyToggle.isOn == true)
+        
+        if (strongGuyToggle.isOn == true)
         {
+            cleverGuy = false;
             strongGuy = true;
         }
     }

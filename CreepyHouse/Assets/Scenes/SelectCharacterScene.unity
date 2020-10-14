@@ -1804,7 +1804,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84922110c48c04145bfafbaa49e6c032, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newCharacter: {fileID: 11400000, guid: 41ac7d8b5f4e211418cf5f84d184422c, type: 2}
+  newCharacter: {fileID: 11400000, guid: ccb6c8c547a13f643a481ab3ede619db, type: 2}
   characterNameText: {fileID: 1570630963}
   characterImage: {fileID: 582411749}
   healthValueText: {fileID: 1644286149}

@@ -38,8 +38,8 @@ public class WardrobeScript : MonoBehaviour
 
     private void Start()
     {
-        playerStrength = player.transform.GetChild(1).gameObject.GetComponent<PlayerGuyScript>().GetPlayerStrength();
-        playerDexterity = player.transform.GetChild(1).gameObject.GetComponent<PlayerGuyScript>().GetPlayerDexterity();
+        playerStrength = player.GetComponent<PlayerScript>().GetPlayerStrength();
+        playerDexterity = player.GetComponent<PlayerScript>().GetPlayerDexterity();
 
         leftDoorRotationVector = new Vector3(rotationAxisLeft.position.x, rotationAxisLeft.position.y, rotationAxisLeft.position.z);
         rightDoorRotationVector = new Vector3(rotationAxisRight.position.x, rotationAxisRight.position.y, rotationAxisRight.position.z);
@@ -84,7 +84,7 @@ public class WardrobeScript : MonoBehaviour
 
     private void PlayerHealthDamage()
     {
-        PlayerGuyScript.playerHealth = PlayerGuyScript.playerHealth - healthDamage;
+        PlayerScript.playerHealth = PlayerScript.playerHealth - healthDamage;
     }
 
     private void OpeningLeftDoor()

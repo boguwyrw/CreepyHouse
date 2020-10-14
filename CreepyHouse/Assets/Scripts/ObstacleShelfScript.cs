@@ -30,12 +30,12 @@ public class ObstacleShelfScript : MonoBehaviour
 
     private void Start()
     {
+        playerStamina = player.GetComponent<PlayerScript>().GetPlayerStamina();
+        playerArtifice = player.GetComponent<PlayerScript>().GetPlayerArtifice();
+
         shelfBoxCollider = GetComponent<BoxCollider>();
         boxColliderSize = new Vector3(shelfBoxCollider.size.x, shelfBoxCollider.size.y, shelfBoxCollider.size.z);
         boxColliderCenter = new Vector3(shelfBoxCollider.center.x, shelfBoxCollider.center.y, shelfBoxCollider.center.z);
-
-        playerStamina = player.transform.GetChild(1).gameObject.GetComponent<PlayerGuyScript>().GetPlayerStamina();
-        playerArtifice = player.transform.GetChild(1).gameObject.GetComponent<PlayerGuyScript>().GetPlayerArtifice();
 
         useItemButton.interactable = false;
     }
@@ -81,7 +81,7 @@ public class ObstacleShelfScript : MonoBehaviour
 
     private void PlayerHealthDamage()
     {
-        PlayerGuyScript.playerHealth = PlayerGuyScript.playerHealth - healthDamage;
+        PlayerScript.playerHealth = PlayerScript.playerHealth - healthDamage;
     }
 
     private IEnumerator DisplayPositiveInfo()

@@ -5,19 +5,54 @@ using UnityEngine;
 public class PlayerScript : MonoBehaviour
 {
     [SerializeField]
-    private GameObject playerCleverGuy;
+    private NewCharacterScript playerCleverGuy;
     [SerializeField]
-    private GameObject playerStrongGuy;
+    private NewCharacterScript playerStrongGuy;
 
-    private void Start()
+    public static int playerHealth = 0;
+
+    private int playerStrength = 0;
+    private int playerDexterity = 0;
+    private int playerStamina = 0;
+    private int playerArtifice = 0;
+
+    private void Awake()
     {
-        if (CharactersScript.cleverGuy == false)
+        if (CharactersScript.cleverGuy)
         {
-            Destroy(playerCleverGuy);
+            playerHealth = playerCleverGuy.health;
+            playerStrength = playerCleverGuy.strength;
+            playerDexterity = playerCleverGuy.dexterity;
+            playerStamina = playerCleverGuy.stamina;
+            playerArtifice = playerCleverGuy.artifice;
         }
-        else if (CharactersScript.strongGuy == false)
+        else
         {
-            Destroy(playerStrongGuy);
+            playerHealth = playerStrongGuy.health;
+            playerStrength = playerStrongGuy.strength;
+            playerDexterity = playerStrongGuy.dexterity;
+            playerStamina = playerStrongGuy.stamina;
+            playerArtifice = playerStrongGuy.artifice;
         }
+    }
+
+    public int GetPlayerStrength()
+    {
+        return playerStrength;
+    }
+
+    public int GetPlayerDexterity()
+    {
+        return playerDexterity;
+    }
+
+    public int GetPlayerStamina()
+    {
+        return playerStamina;
+    }
+
+    public int GetPlayerArtifice()
+    {
+        return playerArtifice;
     }
 }

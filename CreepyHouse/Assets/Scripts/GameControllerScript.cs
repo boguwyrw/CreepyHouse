@@ -19,7 +19,7 @@ public class GameControllerScript : MonoBehaviour
 
     private void Update()
     {
-        if (PlayerGuyScript.playerHealth == 0)
+        if (PlayerScript.playerHealth == 0)
         {
             endGameInfoText.color = Color.red;
             endGameInfoText.text = "SORRY, YOU LOST";
