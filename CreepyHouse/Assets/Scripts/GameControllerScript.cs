@@ -12,6 +12,9 @@ public class GameControllerScript : MonoBehaviour
     [SerializeField]
     private Button quitGameButton;
 
+    private string lostText = "SORRY, YOU LOST";
+    private string winText = "CONGRATULATION, YOU WIN";
+
     private void Awake()
     {
         Time.timeScale = 1.0f;
@@ -22,7 +25,7 @@ public class GameControllerScript : MonoBehaviour
         if (PlayerScript.playerHealth == 0)
         {
             endGameInfoText.color = Color.red;
-            endGameInfoText.text = "SORRY, YOU LOST";
+            endGameInfoText.text = lostText;
             EndGame();
         }
     }
@@ -38,7 +41,7 @@ public class GameControllerScript : MonoBehaviour
     {
         if (other.gameObject.layer == 9)
         {
-            endGameInfoText.text = "CONGRATULATION, YOU WIN";
+            endGameInfoText.text = winText;
             resumeGameButton.interactable = false;
             EndGame();
         }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ObstacleShelfScript : MonoBehaviour
+public class ObstacleShelfScript : MonoBehaviour, IEquipmentHolderScript
 {
     [SerializeField]
     private Transform rotationAxis;
@@ -28,6 +28,12 @@ public class ObstacleShelfScript : MonoBehaviour
     private int playerStamina = 0;
     private int playerArtifice = 0;
 
+    private string positiveInfo = "Congratulations, you blocked the shelf, you can go forward";
+    private string negativeInfo = "You hurt yourself on falling ledge";
+
+    private Dictionary<string, Button> interactableDictionary = new Dictionary<string, Button>();
+    readonly string boardItemName = "Board";
+
     private void Start()
     {
         playerStamina = player.GetComponent<PlayerScript>().GetPlayerStamina();
@@ -38,6 +44,8 @@ public class ObstacleShelfScript : MonoBehaviour
         boxColliderCenter = new Vector3(shelfBoxCollider.center.x, shelfBoxCollider.center.y, shelfBoxCollider.center.z);
 
         useItemButton.interactable = false;
+
+        interactableDictionary.Add(boardItemName, useItemButton);
     }
 
     private void InteractionWithShelf()
@@ -89,7 +97,7 @@ public class ObstacleShelfScript : MonoBehaviour
         yield return new WaitForSeconds(1);
         ActivateShelfInfoText();
         shelfInfoText.color = Color.green;
-        shelfInfoText.text = "Congratulations, you blocked the shelf, you can go forward";
+        shelfInfoText.text = positiveInfo;
         StartCoroutine(DeactivateShelfInfoText());
     }
 
@@ -98,7 +106,7 @@ public class ObstacleShelfScript : MonoBehaviour
         yield return new WaitForSeconds(1);
         ActivateShelfInfoText();
         shelfInfoText.color = Color.red;
-        shelfInfoText.text = "You hurt yourself on falling ledge";
+        shelfInfoText.text = negativeInfo;
         StartCoroutine(DeactivateShelfInfoText());
     }
 
@@ -119,18 +127,6 @@ public class ObstacleShelfScript : MonoBehaviour
         useItemButton.gameObject.SetActive(false);
     }
 
-    private void CheckPlayerEquipment()
-    {
-        for (int i = 0; i < playerEquipment.transform.childCount; i++)
-        {
-            string nameOfItemInInventory = playerEquipment.transform.GetChild(i).name;
-            if (nameOfItemInInventory.Equals("Board"))
-            {
-                useItemButton.interactable = true;
-            }
-        }
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == 9)
@@ -138,7 +134,7 @@ public class ObstacleShelfScript : MonoBehaviour
             transform.RotateAround(rotationAxis.position, Vector3.left, 15);
             useHandsButton.gameObject.SetActive(true);
             useItemButton.gameObject.SetActive(true);
-            CheckPlayerEquipment();
+            EquipmentCheckerScript.CheckPlayerEquipment(this);
         }
     }
 
@@ -154,5 +150,15 @@ public class ObstacleShelfScript : MonoBehaviour
         InteractionWithShelf();
         PlayerUseItem();
         DeactivateButtons();
+    }
+
+    public GameObject getEquipment()
+    {
+        return playerEquipment;
+    }
+
+    public Dictionary<string, Button> getInteractables()
+    {
+        return interactableDictionary;
     }
 }

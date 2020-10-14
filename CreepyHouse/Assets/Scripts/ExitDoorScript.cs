@@ -18,6 +18,9 @@ public class ExitDoorScript : MonoBehaviour
     private float doorOpeningSpeed = 50.0f;
     private bool canOpenExitDoor = false;
 
+    private string positiveInfo = "Congratulations, you can leave Creepy House";
+    private string lackOfKeyInfo = "You don't have the Key";
+
     private void Start()
     {
         rotationVector = new Vector3(rotationPoint.position.x, rotationPoint.position.y, rotationPoint.position.z);
@@ -47,7 +50,7 @@ public class ExitDoorScript : MonoBehaviour
         yield return new WaitForSeconds(1);
         ActivateExitDoorInfoText();
         exitDoorInfoText.color = Color.green;
-        exitDoorInfoText.text = "Congratulations, you can leave Creepy House";
+        exitDoorInfoText.text = positiveInfo;
         StartCoroutine(DeactivateExitDoorInfoText());
     }
 
@@ -62,7 +65,7 @@ public class ExitDoorScript : MonoBehaviour
         exitDoorInfoText.gameObject.SetActive(false);
     }
 
-    private void CheckPlayerEquipment()
+    private void CheckExitDoor()
     {
         for (int i = 0; i < playerEquipment.transform.childCount; i++)
         {
@@ -75,7 +78,7 @@ public class ExitDoorScript : MonoBehaviour
             else
             {
                 exitDoorInfoText.color = Color.red;
-                exitDoorInfoText.text = "You don't have the Key";
+                exitDoorInfoText.text = lackOfKeyInfo;
                 ActivateExitDoorInfoText();
             }
         }
@@ -85,7 +88,7 @@ public class ExitDoorScript : MonoBehaviour
     {
         if (other.gameObject.layer == 9)
         {
-            CheckPlayerEquipment();
+            CheckExitDoor();
         }
     }
 

@@ -26,6 +26,9 @@ public class ObstacleCouchScript : MonoBehaviour
     private int playerStrength = 0;
     private int playerDexterity = 0;
 
+    private string positiveInfo = "Congratulations, you are going forward";
+    private string negativeInfo = "You hurt yourself by protruding spring";
+
     private void Start()
     {
         playerStrength = player.GetComponent<PlayerScript>().GetPlayerStrength();
@@ -91,7 +94,7 @@ public class ObstacleCouchScript : MonoBehaviour
         yield return new WaitForSeconds(1);
         ActivateCouchInfoText();
         couchInfoText.color = Color.green;
-        couchInfoText.text = "Congratulations, you are going forward";
+        couchInfoText.text = positiveInfo;
         StartCoroutine(DeactivateCouchInfoText());
     }
 
@@ -100,7 +103,7 @@ public class ObstacleCouchScript : MonoBehaviour
         yield return new WaitForSeconds(1);
         ActivateCouchInfoText();
         couchInfoText.color = Color.red;
-        couchInfoText.text = "You hurt yourself by protruding spring";
+        couchInfoText.text = negativeInfo;
         StartCoroutine(DeactivateCouchInfoText());
     }
 

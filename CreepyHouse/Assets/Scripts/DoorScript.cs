@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DoorScript : MonoBehaviour
+public class DoorScript : MonoBehaviour, IEquipmentHolderScript
 {
     [SerializeField]
     private Button wreckingBarButton;
@@ -23,6 +23,10 @@ public class DoorScript : MonoBehaviour
     private string nameOfPointedObject = "";
     private PlayerTakeOpenObjectScript playerTakeOpen;
 
+    private Dictionary<string, Button> interactableDictionary = new Dictionary<string, Button>();
+    readonly string wreckingBarItemName = "WreckingBar";
+    readonly string skeletonKeyItemName = "SkeletonKey";
+
     private void Start()
     {
         doorWidth = gameObject.GetComponent<Renderer>().bounds.size.x;
@@ -30,6 +34,9 @@ public class DoorScript : MonoBehaviour
 
         doorsScript = transform.parent.gameObject.GetComponent<DoorsScript>();
         playerTakeOpen = player.GetComponent<PlayerTakeOpenObjectScript>();
+
+        interactableDictionary.Add(wreckingBarItemName, wreckingBarButton);
+        interactableDictionary.Add(skeletonKeyItemName, skeletonKeyButton);
     }
 
     private void Update()
@@ -62,30 +69,13 @@ public class DoorScript : MonoBehaviour
         skeletonKeyButton.gameObject.SetActive(false);
     }
 
-    private void CheckPlayerEquipment()
-    {
-        for (int i = 0; i < playerEquipment.transform.childCount; i++)
-        {
-            string nameOfItemInInventory = playerEquipment.transform.GetChild(i).name;
-            if (nameOfItemInInventory.Equals("WreckingBar"))
-            {
-                wreckingBarButton.interactable = true;
-            }
-
-            if (nameOfItemInInventory.Equals("SkeletonKey"))
-            {
-                skeletonKeyButton.interactable = true;
-            }
-        }
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == 9)
         {
             wreckingBarButton.gameObject.SetActive(true);
             skeletonKeyButton.gameObject.SetActive(true);
-            CheckPlayerEquipment();
+            EquipmentCheckerScript.CheckPlayerEquipment(this);
         }
     }
 
@@ -95,5 +85,15 @@ public class DoorScript : MonoBehaviour
         {
             TurnOffButtons();
         }
+    }
+
+    public GameObject getEquipment()
+    {
+        return playerEquipment;
+    }
+
+    public Dictionary<string, Button> getInteractables()
+    {
+        return interactableDictionary;
     }
 }

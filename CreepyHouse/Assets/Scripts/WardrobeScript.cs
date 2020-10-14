@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class WardrobeScript : MonoBehaviour
+public class WardrobeScript : MonoBehaviour, IEquipmentHolderScript
 {
     [SerializeField]
     private Button forceButton;
@@ -36,6 +36,12 @@ public class WardrobeScript : MonoBehaviour
     private int playerStrength = 0;
     private int playerDexterity = 0;
 
+    private string positiveInfo = "Congratulations, you opened wardrobe without problems";
+    private string negativeInfo = "You hurt yourself by loose handle";
+
+    private Dictionary<string, Button> interactableDictionary = new Dictionary<string, Button>();
+    readonly string screwdriverItemName = "Screwdriver";
+
     private void Start()
     {
         playerStrength = player.GetComponent<PlayerScript>().GetPlayerStrength();
@@ -45,6 +51,8 @@ public class WardrobeScript : MonoBehaviour
         rightDoorRotationVector = new Vector3(rotationAxisRight.position.x, rotationAxisRight.position.y, rotationAxisRight.position.z);
 
         useItemButton.interactable = false;
+
+        interactableDictionary.Add(screwdriverItemName, useItemButton);
     }
 
     private void Update()
@@ -113,7 +121,7 @@ public class WardrobeScript : MonoBehaviour
         yield return new WaitForSeconds(1);
         ActivateWardrobeInfoText();
         wardrobeInfoText.color = Color.green;
-        wardrobeInfoText.text = "Congratulations, you opened wardrobe without problems";
+        wardrobeInfoText.text = positiveInfo;
         StartCoroutine(DeactivateWardrobeInfoText());
     }
 
@@ -122,7 +130,7 @@ public class WardrobeScript : MonoBehaviour
         yield return new WaitForSeconds(1);
         ActivateWardrobeInfoText();
         wardrobeInfoText.color = Color.red;
-        wardrobeInfoText.text = "You hurt yourself by loose handle";
+        wardrobeInfoText.text = negativeInfo;
         StartCoroutine(DeactivateWardrobeInfoText());
     }
 
@@ -137,25 +145,13 @@ public class WardrobeScript : MonoBehaviour
         wardrobeInfoText.gameObject.SetActive(false);
     }
 
-    private void CheckPlayerEquipment()
-    {
-        for (int i = 0; i < playerEquipment.transform.childCount; i++)
-        {
-            string nameOfItemInInventory = playerEquipment.transform.GetChild(i).name;
-            if (nameOfItemInInventory.Equals("Screwdriver"))
-            {
-                useItemButton.interactable = true;
-            }
-        }
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == 9)
         {
             forceButton.gameObject.SetActive(true);
             useItemButton.gameObject.SetActive(true);
-            CheckPlayerEquipment();
+            EquipmentCheckerScript.CheckPlayerEquipment(this);
         }
     }
 
@@ -179,5 +175,15 @@ public class WardrobeScript : MonoBehaviour
         PlayerUseItem();
         canOpenDoors = true;
         DeactivateButtons();
+    }
+
+    public GameObject getEquipment()
+    {
+        return playerEquipment;
+    }
+
+    public Dictionary<string, Button> getInteractables()
+    {
+        return interactableDictionary;
     }
 }

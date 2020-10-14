@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ChestScript : MonoBehaviour
+public class ChestScript : MonoBehaviour, IEquipmentHolderScript
 {
     [SerializeField]
     private Button wreckingBarButton;
@@ -31,6 +31,13 @@ public class ChestScript : MonoBehaviour
     private int playerStrength = 0;
     private int playerDexterity = 0;
 
+    private string positiveInfo = "Congratulations, you opened chest without problems";
+    private string negativeInfo = "You hurt yourself by sharp lid";
+
+    private Dictionary<string, Button> interactableDictionary = new Dictionary<string, Button>();
+    readonly string wreckingBarItemName = "WreckingBar";
+    readonly string axItemName = "Ax";
+
     private void Start()
     {
         playerStrength = player.GetComponent<PlayerScript>().GetPlayerStrength();
@@ -40,6 +47,9 @@ public class ChestScript : MonoBehaviour
 
         wreckingBarButton.interactable = false;
         axButton.interactable = false;
+
+        interactableDictionary.Add(wreckingBarItemName, wreckingBarButton);
+        interactableDictionary.Add(axItemName, axButton);
     }
 
     private void Update()
@@ -111,7 +121,7 @@ public class ChestScript : MonoBehaviour
         yield return new WaitForSeconds(1);
         ActivateChestInfoText();
         chestInfoText.color = Color.green;
-        chestInfoText.text = "Congratulations, you opened chest without problems";
+        chestInfoText.text = positiveInfo;
         StartCoroutine(DeactivateChestInfoText());
     }
 
@@ -120,7 +130,7 @@ public class ChestScript : MonoBehaviour
         yield return new WaitForSeconds(1);
         ActivateChestInfoText();
         chestInfoText.color = Color.red;
-        chestInfoText.text = "You hurt yourself by sharp lid";
+        chestInfoText.text = negativeInfo;
         StartCoroutine(DeactivateChestInfoText());
     }
 
@@ -135,30 +145,13 @@ public class ChestScript : MonoBehaviour
         chestInfoText.gameObject.SetActive(false);
     }
 
-    private void CheckPlayerEquipment()
-    {
-        for (int i = 0; i < playerEquipment.transform.childCount; i++)
-        {
-            string nameOfItemInInventory = playerEquipment.transform.GetChild(i).name;
-            if (nameOfItemInInventory.Equals("WreckingBar"))
-            {
-                wreckingBarButton.interactable = true;
-            }
-
-            if (nameOfItemInInventory.Equals("Ax"))
-            {
-                axButton.interactable = true;
-            }
-        }
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == 9)
         {
             wreckingBarButton.gameObject.SetActive(true);
             axButton.gameObject.SetActive(true);
-            CheckPlayerEquipment();
+            EquipmentCheckerScript.CheckPlayerEquipment(this);
         }
     }
 
@@ -184,5 +177,15 @@ public class ChestScript : MonoBehaviour
         DeactivateButtons();
         DeactivateChest();
         PlayerUseAx();
+    }
+
+    public GameObject getEquipment()
+    {
+        return playerEquipment;
+    }
+
+    public Dictionary<string, Button> getInteractables()
+    {
+        return interactableDictionary;
     }
 }

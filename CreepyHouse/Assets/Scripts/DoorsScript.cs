@@ -22,6 +22,9 @@ public class DoorsScript : MonoBehaviour
     private int playerStamina = 0;
     private int playerArtifice = 0;
 
+    private string positiveInfo = "Congratulations, you opened door without problems";
+    private string negativeInfo = "You hurt yourself by protruding door board";
+
     private void Start()
     {
         playerStamina = player.GetComponent<PlayerScript>().GetPlayerStamina();
@@ -83,7 +86,7 @@ public class DoorsScript : MonoBehaviour
         yield return new WaitForSeconds(1);
         ActivateDoorInfoText();
         doorInfoText.color = Color.green;
-        doorInfoText.text = "Congratulations, you opened door without problems";
+        doorInfoText.text = positiveInfo;
         StartCoroutine(DeactivateDoorInfoText());
     }
 
@@ -92,7 +95,7 @@ public class DoorsScript : MonoBehaviour
         yield return new WaitForSeconds(1);
         ActivateDoorInfoText();
         doorInfoText.color = Color.red;
-        doorInfoText.text = "You hurt yourself by protruding board";
+        doorInfoText.text = negativeInfo;
         StartCoroutine(DeactivateDoorInfoText());
     }
 
