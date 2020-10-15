@@ -3356,7 +3356,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0bd2773b78117c245b39710c9166fe2a, type: 3}
+  - {fileID: 2100000, guid: 239cdbff7e621fe43b1711ed83021c9a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -17819,8 +17819,8 @@ MonoBehaviour:
   useHandsButton: {fileID: 503947028}
   useItemButton: {fileID: 1423203704}
   shelfInfoText: {fileID: 967078925}
-  player: {fileID: 1334293281}
   playerEquipment: {fileID: 2024391653}
+  player: {fileID: 1334293281}
 --- !u!1001 &1614824376
 PrefabInstance:
   m_ObjectHideFlags: 0
