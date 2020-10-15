@@ -11,6 +11,7 @@ public class DrawerScript : MonoBehaviour
 
     private string objectName = "";
     private bool canOpen = false;
+    private float drawerOpeningLength = 1.4f;
 
     private void Start()
     {
@@ -22,7 +23,7 @@ public class DrawerScript : MonoBehaviour
         objectName = playerTakeOpen.GetObjectName();
         canOpen = playerTakeOpen.GetCanOpen();
 
-        if (gameObject.name.Equals(objectName) && canOpen && transform.localPosition.z <= 1.4f)
+        if (gameObject.name.Equals(objectName) && canOpen && transform.localPosition.z <= drawerOpeningLength)
         {
             transform.Translate(Vector3.forward * Time.deltaTime);
         }

@@ -19,6 +19,7 @@ public class DoorScript : MonoBehaviour, IEquipmentHolderScript
     private float doorOpeningSpeed = 100.0f;
     private DoorsScript doorsScript;
     private bool openingDoor = false;
+    private int playerNumber = 9;
 
     private string nameOfPointedObject = "";
     private PlayerTakeOpenObjectScript playerTakeOpen;
@@ -71,7 +72,7 @@ public class DoorScript : MonoBehaviour, IEquipmentHolderScript
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == 9)
+        if (other.gameObject.layer == playerNumber)
         {
             wreckingBarButton.gameObject.SetActive(true);
             skeletonKeyButton.gameObject.SetActive(true);
@@ -81,7 +82,7 @@ public class DoorScript : MonoBehaviour, IEquipmentHolderScript
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.layer == 9)
+        if (other.gameObject.layer == playerNumber)
         {
             TurnOffButtons();
         }

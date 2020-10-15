@@ -24,6 +24,7 @@ public class ObstacleShelfScript : MonoBehaviour, IEquipmentHolderScript
 
     private int healthDamage = 2;
     private int minimumRequiredPoints = 6;
+    private int playerNumber = 9;
 
     private int playerStamina = 0;
     private int playerArtifice = 0;
@@ -129,7 +130,7 @@ public class ObstacleShelfScript : MonoBehaviour, IEquipmentHolderScript
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == 9)
+        if (other.gameObject.layer == playerNumber)
         {
             transform.RotateAround(rotationAxis.position, Vector3.left, 15);
             useHandsButton.gameObject.SetActive(true);

@@ -24,6 +24,7 @@ public class ChestScript : MonoBehaviour, IEquipmentHolderScript
     private bool canOpenChest = false;
     private Vector3 rotationVector;
     private float chestWingSpeed = 150.0f;
+    private int playerNumber = 9;
 
     private int healthDamage = 2;
     private int minimumRequiredPoints = 8;
@@ -147,7 +148,7 @@ public class ChestScript : MonoBehaviour, IEquipmentHolderScript
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == 9)
+        if (other.gameObject.layer == playerNumber)
         {
             wreckingBarButton.gameObject.SetActive(true);
             axButton.gameObject.SetActive(true);
@@ -157,7 +158,7 @@ public class ChestScript : MonoBehaviour, IEquipmentHolderScript
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.layer == 9)
+        if (other.gameObject.layer == playerNumber)
         {
             DeactivateButtons();
         }

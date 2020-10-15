@@ -12,6 +12,8 @@ public class GameControllerScript : MonoBehaviour
     [SerializeField]
     private Button quitGameButton;
 
+    private int playerNumber = 9;
+
     private string lostText = "SORRY, YOU LOST";
     private string winText = "CONGRATULATION, YOU WIN";
 
@@ -39,7 +41,7 @@ public class GameControllerScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == 9)
+        if (other.gameObject.layer == playerNumber)
         {
             endGameInfoText.text = winText;
             resumeGameButton.interactable = false;

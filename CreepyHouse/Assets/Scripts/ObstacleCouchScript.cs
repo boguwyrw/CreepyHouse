@@ -22,6 +22,7 @@ public class ObstacleCouchScript : MonoBehaviour
     private bool canMoveCouch = false;
     private int healthDamage = 2;
     private int minimumRequiredPoints = 8;
+    private int playerNumber = 9;
 
     private int playerStrength = 0;
     private int playerDexterity = 0;
@@ -120,7 +121,7 @@ public class ObstacleCouchScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == 9)
+        if (other.gameObject.layer == playerNumber)
         {
             jumpButton.gameObject.SetActive(true);
             moveButton.gameObject.SetActive(true);
@@ -129,7 +130,7 @@ public class ObstacleCouchScript : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.layer == 9)
+        if (other.gameObject.layer == playerNumber)
         {
             jumpButton.gameObject.SetActive(false);
             moveButton.gameObject.SetActive(false);

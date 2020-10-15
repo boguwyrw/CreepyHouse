@@ -15,6 +15,7 @@ public class RoomDoorScript : MonoBehaviour
     private float doorOpeningSpeed = 50.0f;
     private bool madeAction = false;
     private bool doorAreOpen = false;
+    private int playerNumber = 9;
 
     private void Start()
     {
@@ -47,7 +48,7 @@ public class RoomDoorScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == 9)
+        if (other.gameObject.layer == playerNumber)
         {
             actionButton.gameObject.SetActive(true);
             if (!doorAreOpen)
@@ -59,7 +60,7 @@ public class RoomDoorScript : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.layer == 9)
+        if (other.gameObject.layer == playerNumber)
         {
             actionButton.gameObject.SetActive(false);
             actionInfoText.gameObject.SetActive(false);

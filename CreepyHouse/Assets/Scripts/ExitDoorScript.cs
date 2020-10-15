@@ -17,6 +17,7 @@ public class ExitDoorScript : MonoBehaviour
     private Vector3 rotationVector;
     private float doorOpeningSpeed = 50.0f;
     private bool canOpenExitDoor = false;
+    private int playerNumber = 9;
 
     private string positiveInfo = "Congratulations, you can leave Creepy House";
     private string lackOfKeyInfo = "You don't have the Key";
@@ -86,7 +87,7 @@ public class ExitDoorScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == 9)
+        if (other.gameObject.layer == playerNumber)
         {
             CheckExitDoor();
         }
@@ -94,7 +95,7 @@ public class ExitDoorScript : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.layer == 9)
+        if (other.gameObject.layer == playerNumber)
         {
             openExitDoorButton.gameObject.SetActive(false);
             exitDoorInfoText.gameObject.SetActive(false);

@@ -29,6 +29,7 @@ public class WardrobeScript : MonoBehaviour, IEquipmentHolderScript
     private Vector3 leftDoorRotationVector;
     private Vector3 rightDoorRotationVector;
     private bool canOpenDoors = false;
+    private int playerNumber = 9;
 
     private int healthDamage = 2;
     private int minimumRequiredPoints = 8;
@@ -147,7 +148,7 @@ public class WardrobeScript : MonoBehaviour, IEquipmentHolderScript
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == 9)
+        if (other.gameObject.layer == playerNumber)
         {
             forceButton.gameObject.SetActive(true);
             useItemButton.gameObject.SetActive(true);
@@ -157,7 +158,7 @@ public class WardrobeScript : MonoBehaviour, IEquipmentHolderScript
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.layer == 9)
+        if (other.gameObject.layer == playerNumber)
         {
             DeactivateButtons();
         }

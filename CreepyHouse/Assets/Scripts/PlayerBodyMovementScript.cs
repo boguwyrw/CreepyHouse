@@ -9,7 +9,14 @@ public class PlayerBodyMovementScript : MonoBehaviour
 
     private float horizontalMove = 0.0f;
     private float verticalMove = 0.0f;
-    private float playerSpeed = 3.0f;
+    private float playerSpeed = 0.0f;
+    private float speed = 3.2f;
+    private int obstaclesNumber = 10;
+
+    private void Start()
+    {
+        playerSpeed = speed;
+    }
 
     private void Update()
     {
@@ -20,7 +27,7 @@ public class PlayerBodyMovementScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == 10)
+        if (other.gameObject.layer == obstaclesNumber)
         {
             playerSpeed = 0.0f;
         }
@@ -28,9 +35,9 @@ public class PlayerBodyMovementScript : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.layer == 10)
+        if (other.gameObject.layer == obstaclesNumber)
         {
-            playerSpeed = 3.0f;
+            playerSpeed = speed;
         }
     }
 }

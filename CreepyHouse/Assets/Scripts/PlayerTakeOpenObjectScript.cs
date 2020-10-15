@@ -20,6 +20,8 @@ public class PlayerTakeOpenObjectScript : MonoBehaviour
     private string objectName = "";
     private bool canOpen = false;
     private float distanceToObject = 3.0f;
+    private int forTakeNumber = 11;
+    private int interactiveNumber = 12;
 
     private void Update()
     {
@@ -35,7 +37,7 @@ public class PlayerTakeOpenObjectScript : MonoBehaviour
 
     private void PlayerTakeObject()
     {
-        if (castHit.collider.gameObject.layer == 11 && castHit.distance <= distanceToObject)
+        if (castHit.collider.gameObject.layer == forTakeNumber && castHit.distance <= distanceToObject)
         {
             takeButton.gameObject.SetActive(true);
         }
@@ -48,7 +50,7 @@ public class PlayerTakeOpenObjectScript : MonoBehaviour
     private void PlayerOpenObject()
     {
         objectName = castHit.collider.name;
-        if (castHit.collider.gameObject.layer == 12 && castHit.distance <= distanceToObject)
+        if (castHit.collider.gameObject.layer == interactiveNumber && castHit.distance <= distanceToObject)
         {
             openClosedButton.gameObject.SetActive(true);
         }
