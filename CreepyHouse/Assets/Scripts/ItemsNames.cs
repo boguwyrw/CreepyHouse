@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class ItemsNames
+﻿public class ItemsNames
 {
     public static readonly string wreckingBarItemName = "WreckingBar";
     public static readonly string axItemName = "Ax";
